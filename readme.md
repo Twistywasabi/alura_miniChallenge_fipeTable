@@ -45,18 +45,18 @@ Notes:
 * To carry out the challenge, we will consume an API, documented in this link.
 
 * Depending on the chosen brand (car, motorcycle, or truck), we will call one of the endpoints below to search for the brands:
-https://parallelum.com.br/fipe/api/v1/carros/marcas
-https://parallelum.com.br/fipe/api/v1/motos/marcas
-https://parallelum.com.br/fipe/api/v1/caminhoes/marcas
+  - https://parallelum.com.br/fipe/api/v1/carros/marcas
+  - https://parallelum.com.br/fipe/api/v1/motos/marcas
+  - https://parallelum.com.br/fipe/api/v1/caminhoes/marcas
 
 * The return of this request will be a list with the code and desired brand. If the user wants to query Fiat car models, for example, which have the code 21, they will have to make a new request to the endpoint:
-https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos
+  - https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos
 
 * Once this is done, they will choose a model code, for example this Palio Weekend Stile 1.6 mpi 16V 4p, represented by the code 560. Then they will have to make a third request to the endpoint:
-https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos/560/anos
+  - https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos/560/anos
 
 * To find out the evaluation for each available year, we will have to make requests for the code per year, where we will get a return similar to what is shown below:
-https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos/560/anos/2003-1
+  - https://parallelum.com.br/fipe/api/v1/carros/marcas/21/modelos/560/anos/2003-1
 
 * In order to display the evaluations of all years for this model in our application, we will need to work with collections and repetition structures to be able to display all evaluations of all years to our user.
 
@@ -83,7 +83,5 @@ Have a good challenge!
 ## References 📚
 
 https://github.com/alura-cursos/3257-java-desafio/blob/main/README.md
-
-
 
 ## Updates 🕐
