@@ -2,12 +2,15 @@ package br.com.alura.fipeTable.Main;
 
 import br.com.alura.fipeTable.model.Data;
 import br.com.alura.fipeTable.model.Models;
-import br.com.alura.fipeTable.model.VehicleBrandData;
+import br.com.alura.fipeTable.model.Vehicle;
 import br.com.alura.fipeTable.service.ApiConsume;
 import br.com.alura.fipeTable.service.ConvertData;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -72,7 +75,37 @@ public class Main {
                 .sorted(Comparator.comparing(Data::code))
                 .forEach(System.out::println);
 
+        System.out.println("\n Digite um trecho do nome do carro a ser buscado ");
 
+        var vehicleName = reading.nextLine();
+
+        List<Data> filteredModels = modelList.models().stream()
+                .filter(m -> m.name().toLowerCase().contains(vehicleName.toLowerCase()))
+                .collect(Collectors.toList());
+
+        System.out.println("\nModelos Filtrados");
+        filteredModels.forEach(System.out::println);
+
+        System.out.println("Digite por favor o código para buscar os valores de avaliação: ");
+        var modelCode = reading.nextLine();
+
+        address = address + "/" + modelCode + "/anos";
+
+        json = consume.obtainData(address);
+
+        List<Data> years = converter.obtainList(json, Data.class);
+
+        List<Vehicle> vehicleList = new ArrayList<>();
+
+        for (int i = 0; i < years.size(); i++) {
+            var addressYears = address + "/" + years.get(i).code();
+            json = consume.obtainData(addressYears);
+            Vehicle vehicle = converter.obtainData(json, Vehicle.class);
+            vehicleList.add(vehicle);
+        }
+
+        System.out.println("Todos os veículos filtrados com avaliações por ano: ");
+        vehicleList.forEach(System.out::println);
 
     }
 
